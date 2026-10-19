@@ -1,0 +1,524 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <title>Práctica 1</title>
+</head>
+<body>
+    
+<canvas id="myCanvas">
+    <!--El elemento HTML canvas se puede utilizar para dibujar gráficos a través de 
+        secuencias de comandos (por lo general JavaScript ).-->
+</canvas>
+
+<!-- Aquí va todo el código de three.js -->
+<!-- script type="importmap" importa las librerías necesarias para three.js-->
+<script type="importmap"> 
+    {
+        "imports":{
+            "three": "./js/three.module.js",
+            "three/OrbitControls": "./js/OrbitControls.js" 
+        }
+}
+</script>
+<script type="module"> 
+//🗃️🗃️ Mandar llamar a la librería
+    import * as THREE from 'three'; 
+    import {OrbitControls} from 'three/OrbitControls';
+    console.log(OrbitControls);
+    import {RoundedBoxGeometry} from "./js/RoundedBoxGeometry.js"
+    
+    import ESC01 from"./props/Prop6.js"
+    import ESC02 from"./props/Prop2.js"
+    import ESC03 from"./props/Prop4.js"
+    import ESC04 from"./props/Prop3.js"
+    import ESC7 from"./props/Prop7.js"
+    import ESC06 from"./props/Prop9.js"
+    import ESC8 from"./props/Prop8.js"
+    import ESC10 from"./props/Prop10.js"
+    import ESC11 from"./props/Prop11.js"
+    import ESC5 from"./props/Prop5.js"
+    import ESC12 from"./props/Prop12.js"
+    import ESC13 from"./props/Prop13.js"
+    import ESC14 from"./props/Prop14.js"
+    import ESC15 from"./props/Prop15.js"
+    import ESC16 from"./props/Prop16.js"
+
+//🕹️🕹️ Renderer - Realiza una conexión entre el código y el canvas
+    var renderer = new THREE.WebGLRenderer({
+    canvas: document.getElementById('myCanvas'), antialias: true,
+    });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(1);
+     renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFShadowMap;
+
+// 🎬 Creando nueva escena - Es el espacio donde se colocan los objetos
+    var scene = new THREE.Scene();
+
+//🎥🎥 Agregar una cámara de perspectiva
+    var camera = new THREE.PerspectiveCamera(70,window.innerWidth / window.innerHeight,0.1,2000
+      );
+    scene.add(camera)
+    ;
+
+    //Settings de la cámara
+    
+camera.position.set(0, 10, 99);
+
+// Añadiendo los OrbitControls
+var controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.05;
+
+ // ✍️ GridHelper
+
+// Espacio para colocar los objetos
+
+///  💫💢🐭🐭 LUCES
+
+//OBJETOS  ✏️✏️✏️✏️  🪶
+
+//FONDO
+var loader = new THREE.TextureLoader();
+var bgTextute = loader.load('./imagenes/fondodef.jpg'); 
+scene.background = bgTextute;
+
+
+//APARTADO SOMBRAS y LUZ
+const luzSombra = new THREE.DirectionalLight(0xffffff, 1.2);
+luzSombra.position.set(15, 25, 15); 
+luzSombra.castShadow = true;
+scene.add(luzSombra);
+
+
+// Sombras aplicadas
+//ESCENARIO BASE 
+const materialOfrenda = new THREE.MeshStandardMaterial({ color: 0xffffff });
+const base = ESC01({X:-20, Y:0, Z:-10});
+base.position.set(0, 8, -30);
+base.scale.set(1, 2, 1);
+base.material = materialOfrenda;
+
+scene.add(base);
+
+const ba = ESC06({X:-20, Y:0, Z:-10});
+ba.position.set(0, 4, -25);
+ba.scale.set(1.5, 2, 1.5);
+ba.material = materialOfrenda;
+scene.add(ba);
+
+
+
+
+const cruz=ESC02({X:-20,Y:0,Z:-10});
+scene.add(cruz);
+cruz.position.set(0,1,11);
+cruz.scale.set(1.2,1.2,1);
+
+const tona=ESC03({X:-20,Y:0,Z:-10});
+scene.add(tona);
+tona.position.set(-20,6,-15);
+tona.scale.set(1,1,1);
+
+const tona21=ESC03({X:-20,Y:0,Z:-10});
+scene.add(tona21);
+tona21.position.set(20,6,-15);
+tona21.scale.set(1,1,1);
+
+const tama=ESC04({X:-20,Y:0,Z:-10});
+scene.add(tama);
+tama.position.set(0,6,2);
+tama.scale.set(1,1,1);
+
+const pan=ESC7({X:-20,Y:0,Z:-10});
+scene.add(pan);
+pan.position.set(-8,6,6);
+pan.scale.set(1,1,1);
+
+const pan1=ESC7({X:-20,Y:0,Z:-10});
+scene.add(pan1);
+pan1.position.set(8,6,6);
+pan1.scale.set(1,1,1);
+
+const pan2=ESC7({X:-20,Y:0,Z:-10});
+scene.add(pan2);
+pan2.position.set(12,10,-20);
+pan2.scale.set(1,1,1);
+const pan3=ESC7({X:-20,Y:0,Z:-10});
+scene.add(pan3);
+pan3.position.set(-12,10,-20);
+pan3.scale.set(1,1,1);
+
+
+const marco=ESC8({X:-20,Y:0,Z:-10});
+scene.add(marco);
+marco.position.set(0,2,-27);
+marco.scale.set(3,3,3);
+
+const flor=ESC10({X:-20,Y:0,Z:-10});
+scene.add(flor);
+flor.position.set(4,4,8);
+flor.scale.set(.6,.6,.6);
+flor.rotation.x = Math.PI / 2;
+flor.rotation.z = Math.PI / -10;
+
+const flor2=ESC10({X:-20,Y:0,Z:-10});
+scene.add(flor2);
+flor2.position.set(-4,4,8);
+flor2.scale.set(.6,.6,.6);
+flor2.rotation.x = Math.PI / 2;
+flor2.rotation.z = Math.PI / 12;
+
+const flor3=ESC10({X:-20,Y:0,Z:-10});
+scene.add(flor3);
+flor3.position.set(-10,4,6.6);
+flor3.scale.set(.6,.6,.6);
+flor3.rotation.x = Math.PI / 2;
+flor3.rotation.z = Math.PI / 10;
+
+const flor4=ESC10({X:-20,Y:0,Z:-10});
+scene.add(flor4);
+flor4.position.set(10,4,6.6);
+flor4.scale.set(.6,.6,.6);
+flor4.rotation.x = Math.PI / 2;
+flor4.rotation.z = Math.PI / -12;
+
+const flor5=ESC10({X:-20,Y:0,Z:-10});
+scene.add(flor5);
+flor5.position.set(10,9,-12);
+flor5.scale.set(.6,.6,.6);
+flor5.rotation.x = Math.PI / 2;
+flor5.rotation.z = Math.PI / -6;
+
+const flor6=ESC10({X:-20,Y:0,Z:-10});
+scene.add(flor6);
+flor6.position.set(5,9,-9);
+flor6.scale.set(.6,.6,.6);
+flor6.rotation.x = Math.PI / 2;
+flor6.rotation.z = Math.PI / -6;
+
+const flor7=ESC10({X:-20,Y:0,Z:-10});
+scene.add(flor7);
+flor7.position.set(0,9,-8);
+flor7.scale.set(.6,.6,.6);
+flor7.rotation.x = Math.PI / 2;
+
+const flor8=ESC10({X:-20,Y:0,Z:-10});
+scene.add(flor8);
+flor8.position.set(-6,9,-9);
+flor8.scale.set(.6,.6,.6);
+flor8.rotation.x = Math.PI / 2;
+flor8.rotation.z = Math.PI / 13;
+
+const flor9=ESC10({X:-20,Y:0,Z:-10});
+scene.add(flor9);
+flor9.position.set(-11,9,-12);
+flor9.scale.set(.6,.6,.6);
+flor9.rotation.x = Math.PI / 2;
+flor9.rotation.z = Math.PI / 6;
+
+const flor10=ESC10({X:-20,Y:0,Z:-10});
+scene.add(flor10);
+flor10.position.set(-9,2,12);
+flor10.scale.set(.6,.6,.6);
+flor10.rotation.x = Math.PI / 2;
+flor10.rotation.z = Math.PI / -4;
+
+const flor11=ESC10({X:-20,Y:0,Z:-10});
+scene.add(flor11);
+flor11.position.set(9,2,12);
+flor11.scale.set(.6,.6,.6);
+flor11.rotation.x = Math.PI / 2;
+flor11.rotation.z = Math.PI / 4;
+
+const flor12=ESC14({X:-20,Y:0,Z:-10});
+scene.add(flor12);
+flor12.position.set(-9,2,16);
+flor12.scale.set(.6,.6,.6);
+flor12.rotation.x = Math.PI / 2;
+flor12.rotation.z = Math.PI / -4;
+
+const flor13=ESC10({X:-20,Y:0,Z:-10});
+scene.add(flor13);
+flor13.position.set(-9,2,20);
+flor13.scale.set(.6,.6,.6);
+flor13.rotation.x = Math.PI / 2;
+flor13.rotation.z = Math.PI / -4;
+
+const flor14=ESC14({X:-20,Y:0,Z:-10});
+scene.add(flor14);
+flor14.position.set(-9,2,24);
+flor14.scale.set(.6,.6,.6);
+flor14.rotation.x = Math.PI / 2;
+flor14.rotation.z = Math.PI / -4;
+
+const flor15=ESC10({X:-20,Y:0,Z:-10});
+scene.add(flor15);
+flor15.position.set(-9,2,28);
+flor15.scale.set(.6,.6,.6);
+flor15.rotation.x = Math.PI / 2;
+flor15.rotation.z = Math.PI / -4;
+
+const flor16=ESC14({X:-20,Y:0,Z:-10});
+scene.add(flor16);
+flor16.position.set(-9,2,32);
+flor16.scale.set(.6,.6,.6);
+flor16.rotation.x = Math.PI / 2;
+flor16.rotation.z = Math.PI / -4;
+
+const flor17=ESC14({X:-20,Y:0,Z:-10});
+scene.add(flor17);
+flor17.position.set(9,2,16);
+flor17.scale.set(.6,.6,.6);
+flor17.rotation.x = Math.PI / 2;
+flor17.rotation.z = Math.PI / 4;
+
+const flor18=ESC10({X:-20,Y:0,Z:-10});
+scene.add(flor18);
+flor18.position.set(9,2,20);
+flor18.scale.set(.6,.6,.6);
+flor18.rotation.x = Math.PI / 2;
+flor18.rotation.z = Math.PI / 4;
+
+const flor19=ESC14({X:-20,Y:0,Z:-10});
+scene.add(flor19);
+flor19.position.set(9,2,24);
+flor19.scale.set(.6,.6,.6);
+flor19.rotation.x = Math.PI / 2;
+flor19.rotation.z = Math.PI / 4;
+
+const flor20=ESC10({X:-20,Y:0,Z:-10});
+scene.add(flor20);
+flor20.position.set(9,2,28);
+flor20.scale.set(.6,.6,.6);
+flor20.rotation.x = Math.PI / 2;
+flor20.rotation.z = Math.PI / 4;
+
+const flor21=ESC14({X:-20,Y:0,Z:-10});
+scene.add(flor21);
+flor21.position.set(9,2,32);
+flor21.scale.set(.6,.6,.6);
+flor21.rotation.x = Math.PI / 2;
+flor21.rotation.z = Math.PI / 4;
+
+const flor22=ESC10({X:-20,Y:0,Z:-10});
+scene.add(flor22);
+flor22.position.set(9,2,36);
+flor22.scale.set(.6,.6,.6);
+flor22.rotation.x = Math.PI / 2;
+flor22.rotation.z = Math.PI / 4;
+
+const flor23=ESC10({X:-20,Y:0,Z:-10});
+scene.add(flor23);
+flor23.position.set(-9,2,36);
+flor23.scale.set(.6,.6,.6);
+flor23.rotation.x = Math.PI / 2;
+flor23.rotation.z = Math.PI / -4;
+
+const sal=ESC11({X:-20,Y:0,Z:-10});
+scene.add(sal);
+sal.position.set(0,8.7,-12);
+sal.scale.set(1,1,1);
+
+const vela = ESC5({X:-20,Y:0,Z:-10});
+vela.position.set(10, 10, -13);
+vela.scale.set(1, 1, 1);
+scene.add(vela);
+
+// Luz  para la vela derecha
+const luzVela1 = new THREE.PointLight(0xffaa33, 3.5, 20);
+luzVela1.position.set(10, 12, -13); 
+luzVela1.castShadow = true;
+scene.add(luzVela1);
+
+
+// vela1 izq
+const vela1 = ESC5({X:-20,Y:0,Z:-10});
+vela1.position.set(-10, 10, -13);
+vela1.scale.set(1, 1, 1);
+scene.add(vela1);
+
+// Luz puntual vela izq
+const luzVela2 = new THREE.PointLight(0xffaa33, 3.5, 20);
+luzVela2.position.set(-10, 12, -13);
+scene.add(luzVela2);
+
+
+const vela2=ESC5({X:-20,Y:0,Z:-10});
+scene.add(vela2);
+vela2.position.set(0,7,8);
+vela2.scale.set(1,1,1);
+  
+const luzVela3 = new THREE.PointLight(0xffaa33, 3.5, 45);
+luzVela3.position.set(0, 10.4, 8);
+luzVela3.castShadow = true;
+scene.add(luzVela3);
+
+
+
+
+const agua=ESC12({X:-20,Y:0,Z:-10});
+scene.add(agua);
+agua.position.set(-6,11,-23);
+agua.scale.set(1,1,1);
+
+const agua1=ESC12({X:-20,Y:0,Z:-10});
+scene.add(agua1);
+agua1.position.set(6,11,-23);
+agua1.scale.set(1,1,1);
+
+const tapete=ESC13({X:-20,Y:0,Z:-10});
+scene.add(tapete);
+tapete.position.set(0,-1.1,23);
+tapete.scale.set(1,1,1);
+
+// --- VELA 3 con Luz 4 ---
+const vela3 = ESC5({ x: -20, y: 0, z: -10 });
+vela3.position.set(-6, 0, 24);
+vela3.scale.set(1, .6, 1);
+
+const luzVela4 = new THREE.PointLight(0xffaa33, 2.5, 15);
+luzVela4.position.set(0, 10.4, 8);
+luzVela4.castShadow = true;
+vela3.add(luzVela4);
+
+scene.add(vela3);
+
+
+// --- VELA 4 con Luz 5 ---
+const vela4 = ESC5({ x: -20, y: 0, z: -10 });
+vela4.position.set(-6, 0, 14);
+vela4.scale.set(1, .6, 1);
+
+const luzVela5 = new THREE.PointLight(0xffaa33, 2.5, 15);
+luzVela5.position.set(0, 10.4, 8);
+luzVela5.castShadow = true;
+vela4.add(luzVela5);
+
+scene.add(vela4);
+
+
+// --- VELA 5 con Luz 6 ---
+const vela5 = ESC5({ x: -20, y: 0, z: -10 });
+vela5.position.set(-6, 0, 34);
+vela5.scale.set(1, .6, 1);
+
+const luzVela6 = new THREE.PointLight(0xffaa33, 2.5, 15);
+luzVela6.position.set(0, 10.4, 8);
+luzVela6.castShadow = true;
+vela5.add(luzVela6);
+
+scene.add(vela5);
+
+
+// --- VELA 6 con Luz 7 ---
+const vela6 = ESC5({ x: -20, y: 0, z: -10 });
+vela6.position.set(6, 0, 24);
+vela6.scale.set(1, .6, 1);
+
+const luzVela7 = new THREE.PointLight(0xffaa33, 2.5, 15);
+luzVela7.position.set(0, 10.4, 8);
+luzVela7.castShadow = true;
+vela6.add(luzVela7);
+
+scene.add(vela6);
+
+
+// VELA 7 con Luz 8 
+const vela7 = ESC5({ x: -20, y: 0, z: -10 });
+vela7.position.set(6, 0, 14);
+vela7.scale.set(1, .6, 1);
+
+const luzVela8 = new THREE.PointLight(0xffaa33, 2.5, 15);
+luzVela8.position.set(0, 10.4, 8);
+luzVela8.castShadow = true;
+vela7.add(luzVela8);
+
+scene.add(vela7);
+
+const vela8 = ESC5({ x: -20, y: 0, z: -10 });
+vela8.position.set(6, 0, 34);
+vela8.scale.set(1, .6, 1);
+
+const luzVela9 = new THREE.PointLight(0xffaa33, 2.5, 15);
+luzVela9.position.set(0, 10.4, 8);
+luzVela9.castShadow = true;
+vela8.add(luzVela9);
+
+scene.add(vela8);
+const n9 = ESC16({ x: -20, y: 0, z: -10 });
+scene.add(n9);
+n9.position.set(10, 11, -29);
+n9.scale.set(1, .6, 1);
+
+const n10 = ESC16({ x: -20, y: 0, z: -10 });
+scene.add(n10);
+n10.position.set(-10, 11, -29);
+n10.scale.set(1, .6, 1);
+n10.rotation.set(0,3,0);
+
+
+// Vela 11
+const vela11 = ESC5({ x: -20, y: 0, z: -10 });
+scene.add(vela11);
+vela11.position.set(-15, 7, 5);
+vela11.scale.set(1, .6, 1);
+
+// Luz para la vela 11 
+const luzVela11 = new THREE.PointLight(0xffaa33, 4.0, 15); 
+luzVela11.position.set(-15, 10, 5); 
+scene.add(luzVela11);
+
+
+// Vela 12
+const vela12 = ESC5({ x: -20, y: 0, z: -10 });
+scene.add(vela12);
+vela12.position.set(15, 7, 5);
+vela12.scale.set(1, .6, 1);
+
+// Luz para la vela 12 
+const luzVela12 = new THREE.PointLight(0xffaa33, 4.0, 15); 
+luzVela12.position.set(15, 10, 5); 
+luzVela12.castShadow = true;
+scene.add(luzVela12);
+
+const tama1=ESC15({X:-20,Y:0,Z:-10});
+scene.add(tama1);
+tama1.position.set(-16,6,-4);
+tama1.scale.set(1,1,1);
+
+const tama2=ESC15({X:-20,Y:0,Z:-10});
+scene.add(tama2);
+tama2.position.set(16,6,-4);
+tama2.scale.set(1,1,1);
+
+const n=ESC16({X:-20,Y:0,Z:-10});
+scene.add(n);
+n.position.set(-9,7,-4);
+n.scale.set(0.50,0.50,0.50);
+
+const n1=ESC16({X:-20,Y:0,Z:-10});
+scene.add(n1);
+n1.position.set(9,7,-4);
+n1.scale.set(0.50,0.50,0.50);
+n1.rotation.set(0,3,0);
+
+//🎰🎰Rendering y animación
+    requestAnimationFrame(render);
+    function render() {
+    //🪄🪄 Animación - 
+
+
+
+
+
+    //🎮🎮Actualización del OrbitControls para generar la suavidad de movimiento
+    controls.update();
+    //Llamado para renderizar y volver a llamar a la misma función (render)
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+    }
+</script>
+</body>
+</html>
